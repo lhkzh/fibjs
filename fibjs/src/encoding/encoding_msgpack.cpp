@@ -37,7 +37,13 @@ result_t msgpack_base::encode(v8::Local<v8::Value> data, obj_ptr<Buffer_base>& r
             else if (element->IsNull() || element->IsUndefined())
                 msgpack_pack_nil(&pk);
             else if (element->IsBoolean() || element->IsBooleanObject()) {
+                //if (isolate->toBoolean(element))
                 if (element->IsTrue())
+                    msgpack_pack_true(&pk);
+                else
+                    msgpack_pack_false(&pk);
+            }else if (element->IsBoolean() || element->IsBooleanObject()) {
+                if(element->ToBoolean(Isolate::current()->context()))
                     msgpack_pack_true(&pk);
                 else
                     msgpack_pack_false(&pk);
