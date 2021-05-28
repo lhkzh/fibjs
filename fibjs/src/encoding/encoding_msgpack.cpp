@@ -43,9 +43,10 @@ result_t msgpack_base::encode(v8::Local<v8::Value> data, obj_ptr<Buffer_base>& r
                 else
                     msgpack_pack_false(&pk);
             }else if (element->IsBooleanObject()) {
-                obj_ptr<Buffer_base> buf = Buffer_base::getInstance(element);
-                exlib::string strBuf;
-                buf->toString(strBuf);
+                //obj_ptr<Buffer_base> buf = Buffer_base::getInstance(element);
+                //exlib::string strBuf;
+                //buf->toString(strBuf);
+                v8::String::Utf8Value v(isolate->m_isolate, element);
                 msgpack_pack_str(&pk, v.length());
                 msgpack_pack_str_body(&pk, ToCString(v), v.length());
                 // if(strBuf.find('t')!=exlib::string::npos)
