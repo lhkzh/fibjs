@@ -42,8 +42,11 @@ result_t msgpack_base::encode(v8::Local<v8::Value> data, obj_ptr<Buffer_base>& r
                     msgpack_pack_true(&pk);
                 else
                     msgpack_pack_false(&pk);
-            }else if (element->IsBoolean() || element->IsBooleanObject()) {
-                if(isolate->toInteger(element)>0)
+            }else if (element->IsBooleanObject()) {
+                obj_ptr<Buffer_base> buf = Buffer_base::getInstance(element);
+                exlib::string strBuf;
+                buf->toString(strBuf);
+                if(strBuf.find('t')!=exlib::string::npos)
                     msgpack_pack_true(&pk);
                 else
                     msgpack_pack_false(&pk);
