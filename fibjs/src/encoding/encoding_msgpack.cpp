@@ -43,7 +43,7 @@ result_t msgpack_base::encode(v8::Local<v8::Value> data, obj_ptr<Buffer_base>& r
                 else
                     msgpack_pack_false(&pk);
             }else if (element->IsBoolean() || element->IsBooleanObject()) {
-                if(element->ToBoolean(Isolate::current()->context()))
+                if(isolate->toInteger(element)>0)
                     msgpack_pack_true(&pk);
                 else
                     msgpack_pack_false(&pk);
