@@ -86,11 +86,10 @@ inline void msgpack_base::s_static_decode(const v8::FunctionCallbackInfo<v8::Val
     METHOD_NAME("msgpack.decode");
     METHOD_ENTER();
 
-    METHOD_OVER(1, 1);
-
+    METHOD_OVER(2, 1);
     ARG(obj_ptr<Buffer_base>, 0);
-
-    hr = decode(v0, vr);
+    OPT_ARG(size_t, 1, 0);
+    hr = decode(v0, &v1, vr);
 
     METHOD_RETURN();
 }
