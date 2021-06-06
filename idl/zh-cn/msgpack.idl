@@ -22,4 +22,11 @@ module msgpack
 	 @return 返回解码的变量
 	 */
     static Value decode(Buffer data);
+	
+    /*! @brief 以 msgpack 方式解码字符串为一个变量
+	 @param data 要解码的二进制数据
+     @param offset 指定数据起始位置
+	 @return 返回解码的变量
+	 */
+    static Value decode(Buffer data, Integer offset);
 };

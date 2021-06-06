@@ -24,6 +24,7 @@ public:
     // msgpack_base
     static result_t encode(v8::Local<v8::Value> data, obj_ptr<Buffer_base>& retVal);
     static result_t decode(Buffer_base* data, v8::Local<v8::Value>& retVal);
+    static result_t decode(Buffer_base* data, size_t* offset, v8::Local<v8::Value>& retVal);
 
 public:
     static void s__new(const v8::FunctionCallbackInfo<v8::Value>& args)
