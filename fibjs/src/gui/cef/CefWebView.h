@@ -62,6 +62,7 @@ public:
     EVENT_FUNC(resize);
     EVENT_FUNC(closed);
     EVENT_FUNC(message);
+    EVENT_FUNC(download);
 
 public:
     void AddRef() const OVERRIDE
@@ -91,6 +92,8 @@ public:
 public:
     obj_ptr<NObject> m_opt;
     exlib::string m_url;
+    exlib::string m_download_path;
+    bool m_download_dialog;
 
     CefRefPtr<CefValue> m_proxy;
 
