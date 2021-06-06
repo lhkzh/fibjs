@@ -176,7 +176,7 @@ result_t msgpack_base::encode(v8::Local<v8::Value> data, obj_ptr<Buffer_base>& r
 
 result_t msgpack_base::decode(Buffer_base* data, v8::Local<v8::Value>& retVal)
 {
-    return decode(data, NULL, retVal);
+    return decode(data, 0, retVal);
 }
 
 result_t msgpack_base::decode(Buffer_base* data, size_t* offset, v8::Local<v8::Value>& retVal)
@@ -197,7 +197,7 @@ result_t msgpack_base::decode(Buffer_base* data, size_t* offset, v8::Local<v8::V
         result_t unpack(Buffer_base* data, size_t* offset)
         {
             data->toString(buf);
-            msgpack_unpack_return ret = msgpack_unpack(buf.c_str(), buf.length(), offset, &mempool, &deserialized);
+            msgpack_unpack_return ret = msgpack_unpack(buf.c_str(), buf.length() - *offset, offset, &mempool, &deserialized);
             if (ret != 2)
                 return -1;
 
