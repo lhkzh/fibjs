@@ -176,7 +176,8 @@ result_t msgpack_base::encode(v8::Local<v8::Value> data, obj_ptr<Buffer_base>& r
 
 result_t msgpack_base::decode(Buffer_base* data, v8::Local<v8::Value>& retVal)
 {
-    return decode(data, 0, retVal);
+    size_t n = 0;
+    return decode(data, &n, retVal);
 }
 
 result_t msgpack_base::decode(Buffer_base* data, size_t* offset, v8::Local<v8::Value>& retVal)
